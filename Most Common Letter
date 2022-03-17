@@ -1,0 +1,40 @@
+text=input("Enter a string: ")
+
+# To make a Dictionary: -
+def makeDictionary(str):
+    dict={}
+    for letter in str:
+        if letter is not ' ':
+            if letter not in dict:
+                dict[letter]=0
+            dict[letter]=dict[letter]+1
+        
+    return dict
+
+# Dictionary to List conversion
+
+def lst_to_Dict(dictionary):
+    dictionary=makeDictionary(text)
+    items=list(dictionary.items())
+    
+    return items
+
+# To find the most common letter among dictionary
+def best_letter(str):
+    dictionary=makeDictionary(str)
+    myLst=lst_to_Dict(dictionary)
+    most_count=myLst[0][1] # initalizing this variable
+    j=1
+    print(myLst)
+    best_char=myLst[0][0]
+    for i in range(len(myLst)-1):
+        if most_count<myLst[i][j]:
+            most_count=myLst[i][j]
+            best_char=myLst[i][0]
+        #print("The best character is",best_l)    
+    return best_char
+    
+
+print("{} occurs maximum time".format(best_letter(text)))
+
+                  
