@@ -1,40 +1,55 @@
-text=input("Enter a string: ")
 
-# To make a Dictionary: -
-def makeDictionary(str):
+# In This Program, we tried to go really deep and apply as many validations as possible
+# to yeild the correct result in every way possible:
+
+
+# Asking user to input a string and find the letter that occurs most in that string
+
+
+def makeDictinary(str):
     dict={}
     for letter in str:
-        if letter is not ' ':
+        if letter != ' ':
             if letter not in dict:
                 dict[letter]=0
             dict[letter]=dict[letter]+1
         
     return dict
-
-# Dictionary to List conversion
-
-def lst_to_Dict(dictionary):
-    dictionary=makeDictionary(text)
-    items=list(dictionary.items())
+        
+def mostCommon(str):
+    dictionary=makeDictinary(str)
+    print("\nThe Dictionary that we formed using input is: ",dictionary,'\n')
+    keys=list(dictionary.keys())
+    best_letter_so_far=keys[0] # initialize the variable
+    best_letterS=''
     
-    return items
+    for key in keys:
+        if dictionary[key]>dictionary[best_letter_so_far]:
+            #print("Ist one worked")
+            best_letter_so_far=key
+            best_letterS=best_letter_so_far
+        elif dictionary[key]==dictionary[best_letter_so_far]:
+            if key!=best_letter_so_far:
+                if best_letterS == '':
+                    #print("Second one worked")
+                    best_letterS=(key)+' and '+(best_letter_so_far)
+                else:
+                    #print("Third one worked")
+                    best_letterS+=' and '+key+' '
+            else:
+                #print("Fourth one worked")
+                best_letterS=best_letter_so_far
+                
+            
+            
+        #print(best_letter_so_far)
+    return best_letterS
 
-# To find the most common letter among dictionary
-def best_letter(str):
-    dictionary=makeDictionary(str)
-    myLst=lst_to_Dict(dictionary)
-    most_count=myLst[0][1] # initalizing this variable
-    j=1
-    print(myLst)
-    best_char=myLst[0][0]
-    for i in range(len(myLst)-1):
-        if most_count<myLst[i][j]:
-            most_count=myLst[i][j]
-            best_char=myLst[i][0]
-        #print("The best character is",best_l)    
-    return best_char
-    
+text=input("Please input the string: ")
+print("You input the following text:\n {}".format(text))
+print("Following characters occured maximum times:\n {}".format(mostCommon(text)))
+        
 
-print("{} occurs maximum time".format(best_letter(text)))
+
 
                   
